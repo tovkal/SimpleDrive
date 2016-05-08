@@ -11,6 +11,10 @@
 		952374F31CDBEEAE0023E453 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 952374F01CDBEEAE0023E453 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		952374F41CDBEEAE0023E453 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 952374F11CDBEEAE0023E453 /* SwiftyJSON.framework */; };
 		952374F51CDBEEAE0023E453 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 952374F11CDBEEAE0023E453 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		952F1E601CDFD3790068769D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952F1E5F1CDFD3790068769D /* ApiService.swift */; };
+		952F1E621CDFD47F0068769D /* Aviso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952F1E611CDFD47F0068769D /* Aviso.swift */; };
+		952F1E641CDFD4E60068769D /* AvisoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952F1E631CDFD4E60068769D /* AvisoType.swift */; };
+		952F1E661CDFD8250068769D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 952F1E651CDFD8250068769D /* MapKit.framework */; };
 		95F703DE1CDBDE6D001BB6EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F703DD1CDBDE6D001BB6EF /* AppDelegate.swift */; };
 		95F703E01CDBDE6D001BB6EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F703DF1CDBDE6D001BB6EF /* ViewController.swift */; };
 		95F703E31CDBDE6D001BB6EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95F703E11CDBDE6D001BB6EF /* Main.storyboard */; };
@@ -55,6 +59,11 @@
 /* Begin PBXFileReference section */
 		952374F01CDBEEAE0023E453 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		952374F11CDBEEAE0023E453 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		952F1E5F1CDFD3790068769D /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		952F1E611CDFD47F0068769D /* Aviso.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aviso.swift; sourceTree = "<group>"; };
+		952F1E631CDFD4E60068769D /* AvisoType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvisoType.swift; sourceTree = "<group>"; };
+		952F1E651CDFD8250068769D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		952F1E671CDFDDBC0068769D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		95F703DA1CDBDE6D001BB6EF /* SimpleDrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F703DD1CDBDE6D001BB6EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95F703DF1CDBDE6D001BB6EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952F1E661CDFD8250068769D /* MapKit.framework in Frameworks */,
 				952374F41CDBEEAE0023E453 /* SwiftyJSON.framework in Frameworks */,
 				952374F21CDBEEAE0023E453 /* Alamofire.framework in Frameworks */,
 			);
@@ -100,6 +110,8 @@
 		95F703D11CDBDE6D001BB6EF = {
 			isa = PBXGroup;
 			children = (
+				952F1E671CDFDDBC0068769D /* CoreLocation.framework */,
+				952F1E651CDFD8250068769D /* MapKit.framework */,
 				952374F01CDBEEAE0023E453 /* Alamofire.framework */,
 				952374F11CDBEEAE0023E453 /* SwiftyJSON.framework */,
 				95F703DC1CDBDE6D001BB6EF /* SimpleDrive */,
@@ -124,6 +136,9 @@
 			children = (
 				95F703DD1CDBDE6D001BB6EF /* AppDelegate.swift */,
 				95F703DF1CDBDE6D001BB6EF /* ViewController.swift */,
+				952F1E5F1CDFD3790068769D /* ApiService.swift */,
+				952F1E611CDFD47F0068769D /* Aviso.swift */,
+				952F1E631CDFD4E60068769D /* AvisoType.swift */,
 				95F703E11CDBDE6D001BB6EF /* Main.storyboard */,
 				95F703E41CDBDE6D001BB6EF /* Assets.xcassets */,
 				95F703E61CDBDE6D001BB6EF /* LaunchScreen.storyboard */,
@@ -301,8 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952F1E621CDFD47F0068769D /* Aviso.swift in Sources */,
+				952F1E641CDFD4E60068769D /* AvisoType.swift in Sources */,
 				95F703E01CDBDE6D001BB6EF /* ViewController.swift in Sources */,
 				95F703DE1CDBDE6D001BB6EF /* AppDelegate.swift in Sources */,
+				952F1E601CDFD3790068769D /* ApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
