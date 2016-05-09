@@ -13,11 +13,11 @@ import MapKit
 
 class ApiService: NSObject {
     
-    //var dateFormatter: NSDateFormatter
+    var dateFormatter: NSDateFormatter
     
     override init() {
-        //dateFormatter = NSDateFormatter()
-        //dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         super.init()
     }
@@ -46,31 +46,40 @@ class ApiService: NSObject {
         
         var avisos = [Aviso]()
         
-        for (_, aviso) in avisosJSON {
-            //avisos.append(self.createAviso(aviso))
-            self.createAviso(aviso)
+        print("Total avisos = \(avisosJSON.count)")
+        
+        for (_, avisoJSON) in avisosJSON {
+            avisos.append(self.createAviso(avisoJSON))
         }
+        
+        print("Total processed avisos = \(avisos.count)")
         
         return avisos
     }
     
-    
-    private func createAviso(avisoJSON: JSON) {
-        print(avisoJSON["id"])
-        /*return Aviso(id: avisoJSON["id"],
-                     type: AvisoType(rawValue: avisoJSON["id_tipo_aviso"]),
-                     text: avisoJSON["texto"],
-                     timestamp: dateFormatter.dateFromString(avisoJSON["hora"]),
-                     position: getPosition(avisoJSON["coordenadas"]))*/
+    private func createAviso(avisoJSON: JSON) -> Aviso {
+        
+        let id = avisoJSON["id"].stringValue,
+            avisoType = AvisoType(rawValue: Int(avisoJSON["id_tipo_aviso"].stringValue)!)!,
+            text = avisoJSON["texto"].stringValue,
+            timestamp = dateFormatter.dateFromString(avisoJSON["hora"].stringValue)!,
+            position = getPosition(avisoJSON["coordenadas"].stringValue),
+            verificado = (Int(avisoJSON["verificar"].stringValue)! == 0)
+        
+        return Aviso(id: id, type: avisoType, text: text, timestamp: timestamp, position: position, verificado: verificado)
     }
     
-    /*private func getPosition(position: JSON) -> CLLocationCoordinate2D {
+    private func getPosition(position: String) -> CLLocationCoordinate2D? {
         
-        let components = "39.797662/ 3.074311".componentsSeparatedByString("/")
+        if position.characters.count <= 1 {
+            return nil
+        }
+        
+        let components = position.componentsSeparatedByString("/")
         
         // Sometimes the lon coordinate has a space
-        let doubleComponents: [Double] = components.map({Double($0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))})
+        let doubleComponents: [Double] = components.map({Double($0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))!})
         
         return CLLocationCoordinate2D(latitude: doubleComponents[0], longitude: doubleComponents[1])
-    }*/
+    }
 }

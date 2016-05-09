@@ -10,10 +10,10 @@ import Foundation
 import MapKit
 
 struct Aviso {
-    let id: Int
+    let id: String
     let type: AvisoType
     let text: String
     let timestamp: NSDate
-    let position: CLLocationCoordinate2D
-    let verificado = false
+    let position: CLLocationCoordinate2D?
+    let verificado: Bool
 }
