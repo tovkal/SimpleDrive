@@ -23,18 +23,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        apiService.getAvisos {
+        mapView.delegate = self
+        
+        fetchAvisos(1)
+    }
+    
+    func fetchAvisos(horas: Int) {
+        apiService.getAvisos(horas) {
             avisos in
             for aviso in avisos {
                 self.mapView.addAnnotation(aviso)
             }
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        }    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLoction: CLLocation = locations[0]
@@ -46,5 +46,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         mapView.setRegion(region, animated: true)
+    }
+}
+
+extension ViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView?.canShowCallout = true
+            if let aviso = annotation as? Aviso {
+                switch aviso.type {
+                case .AVISO:
+                    pinView?.pinTintColor = UIColor.yellowColor()
+                case .CONTROL:
+                    pinView?.pinTintColor = UIColor.blueColor()
+                case .RADAR:
+                    pinView?.pinTintColor = UIColor.redColor()
+                default:
+                    pinView?.pinTintColor = UIColor.orangeColor()
+                }
+            }
+        }
+        else {
+            pinView?.annotation = annotation
+        }
+        
+        return pinView
     }
 }
