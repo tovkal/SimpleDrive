@@ -60,11 +60,11 @@ class ApiService: NSObject {
     private func createAviso(avisoJSON: JSON) -> Aviso {
         
         let id = avisoJSON["id"].stringValue,
-            avisoType = AvisoType(rawValue: Int(avisoJSON["id_tipo_aviso"].stringValue)!)!,
-            text = avisoJSON["texto"].stringValue,
-            timestamp = dateFormatter.dateFromString(avisoJSON["hora"].stringValue)!,
-            position = getPosition(avisoJSON["coordenadas"].stringValue),
-            verificado = (Int(avisoJSON["verificar"].stringValue)! == 0)
+        avisoType = AvisoType(rawValue: Int(avisoJSON["id_tipo_aviso"].stringValue)!)!,
+        text = avisoJSON["texto"].stringValue,
+        timestamp = dateFormatter.dateFromString(avisoJSON["hora"].stringValue)!,
+        position = getPosition(avisoJSON["coordenadas"].stringValue),
+        verificado = (Int(avisoJSON["verificar"].stringValue)! == 0)
         
         return Aviso(id: id, type: avisoType, text: text, timestamp: timestamp, position: position, verificado: verificado)
     }
