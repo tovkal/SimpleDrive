@@ -23,7 +23,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        apiService.getAvisos()
+        apiService.getAvisos {
+            avisos in
+            for aviso in avisos {
+                self.mapView.addAnnotation(aviso)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

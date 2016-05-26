@@ -9,11 +9,22 @@
 import Foundation
 import MapKit
 
-struct Aviso {
+class Aviso: NSObject, MKAnnotation {
     let id: String
     let type: AvisoType
-    let text: String
+    let title: String?
     let timestamp: NSDate
-    let position: CLLocationCoordinate2D?
+    let coordinate: CLLocationCoordinate2D
     let verificado: Bool
+    
+    init(id: String, type: AvisoType, text: String, timestamp: NSDate, position: CLLocationCoordinate2D, verificado: Bool) {
+        self.id = id
+        self.type = type
+        self.title = text
+        self.timestamp = timestamp
+        self.coordinate = position
+        self.verificado = verificado
+        
+        super.init()
+    }
 }

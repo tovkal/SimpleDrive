@@ -22,9 +22,9 @@ class ApiService: NSObject {
         super.init()
     }
     
-    func getAvisos(hours: Int = 2) -> [Aviso]? {
+    func getAvisos(hours: Int = 2, completion: ([Aviso]) -> Void){
         
-        var avisos : [Aviso]?
+        var avisos = [Aviso]()
         
         let url = "http://www.socialdrive.es/app/api.php?action=avisos&comarcas=18&usuario=1&format=json&horas=\(hours)"
         
@@ -33,13 +33,12 @@ class ApiService: NSObject {
             case .Success:
                 if let value = response.result.value {
                     avisos = self.processAvisos(JSON(value)["avisos"])
+                    completion(avisos)
                 }
             case .Failure(let error):
                 print(error)
             }
         }
-        
-        return avisos
     }
     
     private func processAvisos(avisosJSON: JSON) -> [Aviso] {
@@ -49,7 +48,10 @@ class ApiService: NSObject {
         print("Total avisos = \(avisosJSON.count)")
         
         for (_, avisoJSON) in avisosJSON {
-            avisos.append(self.createAviso(avisoJSON))
+            if let coordenadas = getPosition(avisoJSON["coordenadas"].stringValue) {
+                let aviso = self.createAviso(avisoJSON, coordenadas: coordenadas)
+                avisos.append(aviso)
+            }
         }
         
         print("Total processed avisos = \(avisos.count)")
@@ -57,13 +59,13 @@ class ApiService: NSObject {
         return avisos
     }
     
-    private func createAviso(avisoJSON: JSON) -> Aviso {
+    private func createAviso(avisoJSON: JSON, coordenadas: CLLocationCoordinate2D) -> Aviso {
         
         let id = avisoJSON["id"].stringValue,
         avisoType = AvisoType(rawValue: Int(avisoJSON["id_tipo_aviso"].stringValue)!)!,
         text = avisoJSON["texto"].stringValue,
         timestamp = dateFormatter.dateFromString(avisoJSON["hora"].stringValue)!,
-        position = getPosition(avisoJSON["coordenadas"].stringValue),
+        position = coordenadas,
         verificado = (Int(avisoJSON["verificar"].stringValue)! == 0)
         
         return Aviso(id: id, type: avisoType, text: text, timestamp: timestamp, position: position, verificado: verificado)
