@@ -22,7 +22,7 @@ class ApiService: NSObject {
         super.init()
     }
     
-    func getAvisos(hours: Int = 2, completion: ([Aviso]) -> Void){
+    func getAvisos(hours: String = "2", completion: ([Aviso]) -> Void){
         
         var avisos = [Aviso]()
         

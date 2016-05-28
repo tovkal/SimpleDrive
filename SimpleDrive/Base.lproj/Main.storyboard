@@ -21,14 +21,71 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cR2-YJ-k8j">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nT-Il-4HY">
+                                <rect key="frame" x="135" y="530" width="330" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4CE-hk-9e6">
+                                        <rect key="frame" x="269" y="14" width="53" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="330" id="8hb-n7-MD1"/>
+                                    <constraint firstAttribute="height" constant="50" id="sX5-Np-cHm"/>
+                                    <constraint firstAttribute="trailing" secondItem="4CE-hk-9e6" secondAttribute="trailing" constant="8" id="t9P-Bm-KoL"/>
+                                    <constraint firstItem="4CE-hk-9e6" firstAttribute="top" secondItem="7nT-Il-4HY" secondAttribute="top" constant="14" id="uUc-5O-V1v"/>
+                                </constraints>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.20000000000000001" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="HKK-5m-RPm">
+                                <rect key="frame" x="143" y="540" width="251" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="3VT-kP-QeB"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="didChangeValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="7gv-Qw-yfl"/>
+                                </connections>
+                            </slider>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSN-wu-jY6">
+                                <rect key="frame" x="285" y="492" width="30" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m35-RV-tWL">
+                                        <rect key="frame" x="-8" y="0.0" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="5WQ-Tx-yKp"/>
+                                            <constraint firstAttribute="width" constant="46" id="OB6-mB-jn0"/>
+                                        </constraints>
+                                        <state key="normal" title="L"/>
+                                        <connections>
+                                            <action selector="didTapCenterOnUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVG-Fq-98T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="AR7-be-klR"/>
+                                    <constraint firstAttribute="width" constant="30" id="Dvn-sh-Hni"/>
+                                    <constraint firstItem="m35-RV-tWL" firstAttribute="top" secondItem="fSN-wu-jY6" secondAttribute="top" id="PuK-C9-ddw"/>
+                                    <constraint firstItem="m35-RV-tWL" firstAttribute="leading" secondItem="fSN-wu-jY6" secondAttribute="leading" constant="-8" id="yhJ-Ij-26z"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cR2-YJ-k8j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="En0-M8-aFG"/>
                             <constraint firstItem="cR2-YJ-k8j" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="IJe-uf-niK"/>
+                            <constraint firstItem="fSN-wu-jY6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Suy-ui-Sqt"/>
+                            <constraint firstItem="7nT-Il-4HY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UZQ-OM-SMV"/>
+                            <constraint firstItem="7nT-Il-4HY" firstAttribute="top" secondItem="cR2-YJ-k8j" secondAttribute="bottom" constant="-70" id="Uhv-jx-aEa"/>
                             <constraint firstItem="cR2-YJ-k8j" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Xce-gL-kUh"/>
+                            <constraint firstItem="HKK-5m-RPm" firstAttribute="top" secondItem="7nT-Il-4HY" secondAttribute="bottom" constant="-40" id="bcL-vg-B9x"/>
                             <constraint firstItem="cR2-YJ-k8j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eNe-Xh-gHz"/>
                             <constraint firstItem="cR2-YJ-k8j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="g47-gn-GOY"/>
+                            <constraint firstItem="7nT-Il-4HY" firstAttribute="leading" secondItem="HKK-5m-RPm" secondAttribute="trailing" constant="-257" id="jYh-Hl-G8E"/>
+                            <constraint firstItem="7nT-Il-4HY" firstAttribute="top" secondItem="fSN-wu-jY6" secondAttribute="bottom" constant="8" id="kb9-ms-3nF"/>
+                            <constraint firstItem="4CE-hk-9e6" firstAttribute="leading" secondItem="HKK-5m-RPm" secondAttribute="trailing" constant="12" id="xWI-i0-MWJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -37,6 +94,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="label" destination="4CE-hk-9e6" id="YOj-iH-j6t"/>
                         <outlet property="mapView" destination="cR2-YJ-k8j" id="5cw-fn-fZo"/>
                     </connections>
                 </viewController>
