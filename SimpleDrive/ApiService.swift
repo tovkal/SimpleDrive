@@ -45,17 +45,13 @@ class ApiService: NSObject {
         
         var avisos = [Aviso]()
         
-        print("Total avisos = \(avisosJSON.count)")
-        
         for (_, avisoJSON) in avisosJSON {
             if let coordenadas = getPosition(avisoJSON["coordenadas"].stringValue) {
                 let aviso = self.createAviso(avisoJSON, coordenadas: coordenadas)
                 avisos.append(aviso)
             }
         }
-        
-        print("Total processed avisos = \(avisos.count)")
-        
+                
         return avisos
     }
     

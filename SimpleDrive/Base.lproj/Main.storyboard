@@ -39,7 +39,7 @@
                                     <constraint firstItem="4CE-hk-9e6" firstAttribute="top" secondItem="7nT-Il-4HY" secondAttribute="top" constant="14" id="uUc-5O-V1v"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.20000000000000001" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="HKK-5m-RPm">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.20000000000000001" maxValue="5" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKK-5m-RPm">
                                 <rect key="frame" x="143" y="540" width="251" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="247" id="3VT-kP-QeB"/>
